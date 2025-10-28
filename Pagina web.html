@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduardo Chávez Amador - Página Personal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Pantalla de presentación */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), #4a6491);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--light-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background-color: #2980b9;
+            border: 2px solid #2980b9;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgb(0, 0, 0);
+            color: var(--primary-color);
+        }
+        
+        /* Secciones de contenido */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 15px auto;
+        }
+        
+        .education-item {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .education-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .education-item h3 {
+            color: var(--secondary-color);
+        }
+        
+        .education-date {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .contact-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .email-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .email-link:hover {
+            text-decoration: underline;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .social-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .hobbies-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .hobby-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .hobby-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .hobby-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .hobby-content {
+            padding: 20px;
+        }
+        
+        .hobby-content h3 {
+            color: var(--secondary-color);
+        }
+        
+        .crypto-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .crypto-img {
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+        
+        .crypto-content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .crypto-content li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .hobbies-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla de presentación -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="lalo.jpg" alt="Foto de Eduardo Chávez Amador" class="profile-img">
+                <h1>Eduardo Chávez Amador</h1>
+                <p>Estudiante de Ingeniería en Sistemas Computacionales</p>
+                <div class="hero-buttons">
+                    <a href="#formacion" class="btn">Formación Académica</a>
+                    <a href="#hobbies" class="btn btn-secondary">Mis Hobbies</a>
+                    <a href="#criptografia" class="btn btn-secondary">Acerca de Criptografía</a>
+                    <a href="#contacto" class="btn btn-secondary">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Formación Académica -->
+    <section id="formacion">
+        <div class="container">
+            <h2 class="section-title">Formación Académica</h2>
+            <div class="education-item">
+                <h3>Ingeniería en Sistemas Computacionales</h3>
+                <p><strong>IPN ESCOM</strong></p>
+                <p class="education-date">2023 - 2027 (6° Semestre)</p>
+                <p>Actualmente cursando el sexto semestre de la carrera con enfoque en desarrollo de software y seguridad informática.</p>
+            </div>
+            <div class="education-item">
+                <h3>Técnico en Informática</h3>
+                <p><strong>CBT N°2 "Guillermo González Camarena", Ixtapaluca</strong></p>
+                <p class="education-date">2019 - 2022</p>
+                <p>Formación técnica en informática con conocimientos en redes, programación y mantenimiento de equipos de cómputo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-info">
+                <p><strong>Correo electrónico:</strong></p>
+                <a href="mailto:edu.3104.ec@gmail.com" class="email-link">edu.3104.ec@gmail.com</a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/eduardo-chavez-amador-6694562b9" class="social-icon" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/LALO3104" class="social-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="CV.pdf" class="btn" download>Descargar CV (PDF)</a>
+                <a href="#" class="btn btn-secondary">Mi Llave Pública</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Hobbies -->
+    <section id="hobbies" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Mis Hobbies</h2>
+            <div class="hobbies-gallery">
+                <div class="hobby-item">
+                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Fútbol" class="hobby-img">
+                    <div class="hobby-content">
+                        <h3>Fútbol</h3>
+                        <p>Me apasiona jugar fútbol, tanto como actividad recreativa como deporte competitivo. Disfruto del trabajo en equipo y la estrategia que implica este deporte.</p>
+                    </div>
+                </div>
+                <div class="hobby-item">
+                    <img src="coleccionar.jpg" alt="Coleccionar cosas" class="hobby-img">
+                    <div class="hobby-content">
+                        <h3>Coleccionar</h3>
+                        <p>Me gusta coleccionar diversos objetos como monedas, figuras de anime o elementos relacionados con la tecnología. Cada colección tiene una historia especial.</p>
+                    </div>
+                </div>
+                <div class="hobby-item">
+                    <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Aprender cosas nuevas" class="hobby-img">
+                    <div class="hobby-content">
+                        <h3>Aprender cosas nuevas</h3>
+                        <p>Siempre estoy buscando ampliar mis conocimientos, especialmente en áreas relacionadas con la tecnología, programación, ciberseguridad y temas de actualidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Acerca de Criptografía -->
+    <section id="criptografia">
+        <div class="container">
+            <h2 class="section-title">Acerca de Criptografía</h2>
+            <div class="crypto-content">
+                <h3>Alan Turing: El Genio que Descifró Enigma</h3>
+                <p>Alan Mathison Turing (1912-1954) fue un matemático, lógico, científico de la computación, criptógrafo y filósofo británico, considerado uno de los padres de la ciencia de la computación y precursor de la informática moderna.</p>
+                
+                <p>Durante la Segunda Guerra Mundial, Turing trabajó en Bletchley Park, el centro de descifrado de códigos británico, donde jugó un papel crucial en el descifrado de los mensajes codificados con la máquina Enigma utilizada por la Alemania nazi.</p>
+                
+                <h4>Contribuciones a la Criptografía:</h4>
+                <ul>
+                    <li><strong>Desciframiento de Enigma:</strong> Turing diseñó la "Bomba", una máquina electromecánica que permitía descifrar los mensajes codificados con Enigma, acortando significativamente la guerra y salvando millones de vidas.</li>
+                    <li><strong>Teoría de la computación:</strong> Su concepto de la "Máquina de Turing" sentó las bases teóricas para la computación moderna y la criptografía.</li>
+                    <li><strong>Prueba de Turing:</strong> Desarrolló el test que lleva su nombre para evaluar la inteligencia artificial, concepto que sigue siendo relevante hoy.</li>
+                    <li><strong>Análisis criptográfico:</strong> Desarrolló técnicas estadísticas para el criptoanálisis que siguen siendo fundamentales en la criptografía moderna.</li>
+                </ul>
+                
+                <p>Después de la guerra, Turing diseñó uno de los primeros computadores electrónicos programables digitales en el Laboratorio Nacional de Física del Reino Unido, y poco después construyó otra de las primeras máquinas en la Universidad de Mánchester.</p>
+                
+                <p>Turing también hizo contribuciones fundamentales a la biología matemática, específicamente a la morfogénesis, con su trabajo sobre la base matemática de la formación de patrones en organismos vivos.</p>
+                
+                <p>Lamentablemente, Turing fue procesado por su homosexualidad en 1952, y falleció en 1954 por envenenamiento con cianuro, en un incidente que se consideró oficialmente como suicidio. En 2009, el primer ministro británico Gordon Brown se disculpó en nombre del gobierno británico por el trato recibido por Turing, y en 2013 recibió el perdón real póstumo.</p>
+                
+                <p>El legado de Turing perdura no solo en la criptografía y la computación, sino también en el Premio Turing, considerado el "Premio Nobel de la Computación", que se otorga anualmente por contribuciones de importancia duradera a la comunidad computacional.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Eduardo Chávez Amador. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para los enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 50,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Efecto de aparición gradual al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Aplicar a las secciones
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
